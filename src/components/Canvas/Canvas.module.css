@@ -1,8 +1,24 @@
 .toolbar {
-    display: flex;
+    position: absolute;
+    left: 400px;
 }
 
 .canvasWrapper {
     position: relative;
+    width: 100%;
+    display: flex;
+}
 
+.canvas_img {
+    position: absolute;
+    top: 30px;
+    left: 400px;
+    z-index: 1;
+}
+
+.canvas_drawing {
+    position: absolute;
+    top: 30px;
+    left: 400px;
+    z-index: 2;
 }
