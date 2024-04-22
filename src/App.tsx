@@ -1,14 +1,20 @@
-
-
 import {Canvas} from './components/Canvas/Canvas.tsx'
-import './App.css'
+import "./App.css"
+import React from 'react'
 
-function App() {
+
+type AppProps = {
+  image:string
+}
+
+export const App: React.FC<AppProps> = ({image}) =>{
 
 
   return (
     <>
-     <Canvas />
+      <div className='app_container'>
+        <Canvas image={image} />
+      </div>
     </>
   )
 }
