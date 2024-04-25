@@ -13,7 +13,7 @@ type Area = { x: number; y: number; width: number; height: number };
 
 type CanvasProps = {
   imageProp: string;
-  bounding: [number, number, number, number] | undefined
+  bounding: number[][] | undefined
 }
 
 export const Canvas: React.FC<CanvasProps> = ({imageProp,bounding}) => {
@@ -69,8 +69,8 @@ export const Canvas: React.FC<CanvasProps> = ({imageProp,bounding}) => {
 
     useEffect(() => {
         if (bounding) {
-            console.log(bounding)
-            setBoundingArea([{x: bounding[0], y: bounding[1], width: bounding[2], height: bounding[3]}]);
+
+            setBoundingArea(bounding.map(b => ({x: b[0], y: b[1], width: b[2], height: b[3]})));
         }
     }, [bounding]);
 

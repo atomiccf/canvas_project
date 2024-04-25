@@ -5,11 +5,10 @@ import React from 'react'
 
 type AppProps = {
   imageUrl:string
-  bounding: [number, number, number, number] | undefined
+  bounding: number[][] | undefined
 }
 
 export const App: React.FC<AppProps> = ({imageUrl,bounding}) =>{
-
 
   return (
     <>
