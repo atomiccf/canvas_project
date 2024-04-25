@@ -4,20 +4,20 @@ import React from 'react'
 
 
 type AppProps = {
-  image:string
+  imageUrl:string
   bounding: [number, number, number, number] | undefined
 }
 
-export const App: React.FC<AppProps> = ({image,bounding}) =>{
+export const App: React.FC<AppProps> = ({imageUrl,bounding}) =>{
 
 
   return (
     <>
       <div className='app_container'>
-        <Canvas image={image} bounding={bounding} />
+        <Canvas key={imageUrl} imageProp={imageUrl} bounding={bounding} />
       </div>
     </>
   )
 }
 
-export default App
+

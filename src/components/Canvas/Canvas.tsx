@@ -1,4 +1,4 @@
-import React, { useState} from 'react';
+import React, { useEffect, useState } from 'react'
 import  { Stage, Layer, Line, Rect, Image } from 'react-konva';
 import useImage from 'use-image';
 import Konva from "konva";
@@ -7,18 +7,19 @@ import Konva from "konva";
 type Point = number;
 type Line = Point[];
 type Rect = { x: number; y: number; width: number; height: number };
+type Area = { x: number; y: number; width: number; height: number };
 
 type CanvasProps = {
-  imageProp?: string;
+  imageProp: string;
   bounding: [number, number, number, number] | undefined
 }
 
-export const Canvas: React.FC<CanvasProps> = ({imageProp}) => {
+export const Canvas: React.FC<CanvasProps> = ({imageProp,bounding}) => {
     const [lines, setLines] = useState<Line[]>([]);
     const [rects, setRects] = useState<Rect[]>([]);
+    const [boundingArea, setBoundingArea] = useState<Area[]>([]);
     const [isDrawing, setIsDrawing] = useState<boolean>(false);
     const [mode, setMode] = useState<'line' | 'rect'>('line');
-
 
     const [image] = useImage(`${imageProp}`);
 
@@ -58,31 +59,40 @@ export const Canvas: React.FC<CanvasProps> = ({imageProp}) => {
                 setRects(rects.concat());
             }
         }
-
-
-
-
     };
 
     const handleMouseUp = () => {
         setIsDrawing(false);
     };
 
+    useEffect(() => {
+        if (bounding) {
+            setBoundingArea([{x: bounding[0], y: bounding[1], width: bounding[2], height: bounding[3]}]);
+        }
+    }, [bounding]);
+
     return (
         <>
-                <button onClick={() => setMode('line')}>Line</button>
-                <button onClick={() => setMode('rect')}>Rect</button>
+            <div>
+                <div>
+                    <button onClick={() => setMode('line')}>Line</button>
+                    <button onClick={() => setMode('rect')}>Rect</button>
+                </div>
                 <Stage width={640} height={640} onMouseDown={handleMouseDown} onMousemove={handleMouseMove}
                        onMouseup={handleMouseUp}>
                     <Layer>
-                        <Image image={image} />
+                        <Image image={image} width={640} height={640} />
                     </Layer>
                     <Layer>
-                        {lines.map((line, i) => <Line key={i} points={line} stroke="black"/>)}
+                        {lines.map((line, i) => <Line key={i} points={line} stroke="black" />)}
                         {rects.map((rect, i) => <Rect key={i} x={rect.x} y={rect.y} width={rect.width}
-                           height={rect.height} stroke="black"/>)}
+                                                      height={rect.height} stroke="black" />)}
+                        {boundingArea.map((rect, i) => <Rect key={i} x={rect.x} y={rect.y} width={rect.width}
+                                                             height={rect.height} stroke="red" />)}
                     </Layer>
                 </Stage>
+            </div>
+
         </>
     );
 };
