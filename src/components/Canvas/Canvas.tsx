@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import  { Stage, Layer, Line, Rect, Image } from 'react-konva';
+import style from './Canvas.module.css'
 import useImage from 'use-image';
 import Konva from "konva";
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 type Point = number;
@@ -67,6 +69,7 @@ export const Canvas: React.FC<CanvasProps> = ({imageProp,bounding}) => {
 
     useEffect(() => {
         if (bounding) {
+            console.log(bounding)
             setBoundingArea([{x: bounding[0], y: bounding[1], width: bounding[2], height: bounding[3]}]);
         }
     }, [bounding]);
@@ -74,9 +77,9 @@ export const Canvas: React.FC<CanvasProps> = ({imageProp,bounding}) => {
     return (
         <>
             <div>
-                <div>
-                    <button onClick={() => setMode('line')}>Line</button>
-                    <button onClick={() => setMode('rect')}>Rect</button>
+                <div className={style.canvas_controls}>
+                    <button className="btn btn-light" onClick={() => setMode('line')}>Line</button>
+                    <button className="btn btn-light" onClick={() => setMode('rect')}>Rect</button>
                 </div>
                 <Stage width={640} height={640} onMouseDown={handleMouseDown} onMousemove={handleMouseMove}
                        onMouseup={handleMouseUp}>
