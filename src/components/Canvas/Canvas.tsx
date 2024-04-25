@@ -9,17 +9,18 @@ type Line = Point[];
 type Rect = { x: number; y: number; width: number; height: number };
 
 type CanvasProps = {
-
+  imageProp?: string;
+  bounding: [number, number, number, number] | undefined
 }
 
-export const Canvas: React.FC = () => {
+export const Canvas: React.FC<CanvasProps> = ({imageProp}) => {
     const [lines, setLines] = useState<Line[]>([]);
     const [rects, setRects] = useState<Rect[]>([]);
     const [isDrawing, setIsDrawing] = useState<boolean>(false);
     const [mode, setMode] = useState<'line' | 'rect'>('line');
 
 
-    const [image] = useImage('../src/assets/react.svg');
+    const [image] = useImage(`${imageProp}`);
 
     const handleMouseDown = (e: Konva.KonvaEventObject<MouseEvent>) => {
         setIsDrawing(true);

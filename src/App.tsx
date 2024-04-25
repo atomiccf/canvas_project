@@ -1,13 +1,21 @@
+import {Canvas} from './components/Canvas/Canvas.tsx'
+import "./App.css"
+import React from 'react'
 
 
+type AppProps = {
+  image:string
+  bounding: [number, number, number, number] | undefined
+}
 
-import './App.css'
-import {Canvas} from "./components/Canvas/Canvas.tsx";
+export const App: React.FC<AppProps> = ({image,bounding}) =>{
 
-function App() {
+
   return (
     <>
-     <Canvas />
+      <div className='app_container'>
+        <Canvas image={image} bounding={bounding} />
+      </div>
     </>
   )
 }
