@@ -21,7 +21,7 @@ export const Canvas: React.FC<CanvasProps> = ({imageProp,bounding}) => {
     const [rects, setRects] = useState<Rect[]>([]);
     const [boundingArea, setBoundingArea] = useState<Area[]>([]);
     const [isDrawing, setIsDrawing] = useState<boolean>(false);
-    const [mode, setMode] = useState<'line' | 'rect'>('line');
+    const [mode, setMode] = useState<'line' | 'rect'>();
 
     const [image] = useImage(`${imageProp}`);
 

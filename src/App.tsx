@@ -9,7 +9,6 @@ type AppProps = {
 }
 
 export const App: React.FC<AppProps> = ({imageUrl,bounding}) =>{
-
   return (
     <>
       <div className='app_container'>
