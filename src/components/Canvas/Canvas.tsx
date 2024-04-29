@@ -12,7 +12,7 @@ type Rect = { x: number; y: number; width: number; height: number };
 type Area = { x: number; y: number; width: number; height: number };
 
 type CanvasProps = {
-  imageProp: string;
+  imageProp: string | undefined;
   bounding: number[][] | undefined
 }
 

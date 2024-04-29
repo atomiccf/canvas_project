@@ -4,7 +4,7 @@ import React from 'react'
 
 
 type AppProps = {
-  imageUrl:string
+  imageUrl:string | undefined
   bounding: number[][] | undefined
 }
 
