@@ -68,17 +68,19 @@ export const Canvas: React.FC<CanvasProps> = ({imageProp,bounding}) => {
     };
 
     useEffect(() => {
+
         if (bounding && image) {
+
             setBoundingArea(bounding.map(b => ({
-                x: (b[0] / 640) * image.width,
-                y: (b[1] / 640) * image.height,
-                width: (b[2] / 640) * image.width,
-                height: (b[3] / 640) * image.height
+                x: (b[0] / image.width) * image.width,
+                y: (b[1] / image.width) * image.height,
+                width: (b[2] / image.width) * image.width,
+                height: (b[3] / image.width) * image.height
             })));
         }
 
     }, [bounding]);
-
+    console.log(image?.width)
     return (
         <>
             <div>
