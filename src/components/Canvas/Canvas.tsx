@@ -76,6 +76,7 @@ export const Canvas: React.FC<CanvasProps> = ({imageProp,bounding}) => {
                 height: (b[3] / 640) * image.height
             })));
         }
+
     }, [bounding]);
 
     return (
